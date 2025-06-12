@@ -4,6 +4,8 @@ A humorous web application that simulates the world's most frustrating public se
 
 ![App Screenshot](screenshot.png) <!-- You'll need to add a screenshot later -->
 
+https://github.com/yourusername/launch-night/raw/main/demo.mp4
+
 ## Features
 
 - 🎭 Retro-style loading screen with authentic "government system" aesthetics
@@ -17,7 +19,7 @@ A humorous web application that simulates the world's most frustrating public se
 
 ## Live Demo
 
-[Try it here](#) <!-- Add your live demo link when you deploy -->
+[Try it here](https://launch-night.netlify.app/) <!-- Add your live demo link when you deploy -->
 
 ## Getting Started
 
@@ -75,3 +77,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - Inspired by every frustrating government website ever
 - Dedicated to everyone who's ever fought with an online form
+# worst_form_on_earth
