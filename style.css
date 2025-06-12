@@ -1,0 +1,399 @@
+:root {
+  --bg: #f0f0f0;
+  --ink: #333;
+  --accent: #c33;
+  --accent2: #339;
+  --input-bg: #fff;
+  --error: #f44;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+body {
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#app-container {
+  width: 90%;
+  max-width: 500px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  position: relative;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: var(--input-bg);
+  box-sizing: border-box; /* Added for better sizing */
+}
+
+.required::after {
+  content: "*";
+  color: var(--accent);
+  margin-left: 3px;
+}
+
+#status {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 9999;
+  text-align: center;
+  max-width: 90%;
+}
+
+#box {
+  padding: 12px 30px;
+  background: var(--accent2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: absolute;
+  font-weight: bold;
+  z-index: 100;
+}
+
+.captcha {
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  margin: 15px 0;
+  text-align: center;
+  position: relative;
+}
+
+.captcha-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  color: #555;
+  text-decoration: line-through;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M0 50 C 50 0, 50 100, 100 50" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2"/></svg>');
+}
+
+.popup {
+  position: fixed;
+  background: white;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.4); /* Increased shadow */
+  border-radius: 8px; /* Increased from 5px */
+  padding: 20px; /* Increased from 15px */
+  z-index: 200;
+  width: 80%;
+  max-width: 400px; /* Increased from 300px */
+  text-align: center;
+  font-size: 1.1rem; /* Increased font size */
+}
+
+.popup-content {
+  margin-bottom: 20px; /* Increased from 15px */
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.popup-button {
+  background: var(--accent2);
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Increased from 8px 15px */
+  border-radius: 5px; /* Increased from 3px */
+  cursor: pointer;
+  font-size: 1.1rem; /* Increased font size */
+  font-weight: bold;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+
+.hidden-field {
+  opacity: 0.05;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  height: 1px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+@media (max-width: 480px) {
+  #app-container {
+    width: 95%;
+    padding: 15px 10px;
+  }
+  input, select {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+  #box {
+    padding: 10px 20px; /* Adjust button padding */
+  }
+}
+
+/* Loading overlay styles - more dusty and boring */
+body.loading {
+  overflow: hidden;
+  background-color: #333; /* Darker background */
+}
+
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a; /* Darker, less vibrant background */
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', monospace;
+  color: #74a835; /* More muted, faded green instead of bright */
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #222; /* Darker container */
+  border: 1px solid #444; /* Less visible border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  position: relative;
+}
+
+.loading-title {
+  text-align: center;
+  font-size: 20px; /* Smaller font */
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 3px rgba(116, 168, 53, 0.3); /* More subtle shadow */
+  animation: slowFlicker 2s infinite alternate;
+  color: #92a386; /* Dull green */
+  letter-spacing: 1px; /* Spread out text for old terminal feel */
+}
+
+.loading-screen {
+  background-color: #111;
+  border: 1px solid #333;
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7); /* Inset shadow for dusty look */
+}
+
+.loading-text {
+  margin-bottom: 20px;
+  animation: slowFlicker 3s infinite;
+  color: #708058; /* Even more muted text */
+  opacity: 0.8; /* Faded text */
+}
+
+.loading-progress-container {
+  height: 15px; /* Thinner progress bar */
+  background-color: #181818;
+  border: 1px solid #333;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.loading-progress-bar {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#loading-progress {
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(
+    45deg,
+    #3d4d2e, /* Muted dark green */
+    #3d4d2e 10px,
+    #2a331f 10px, /* Even darker muted green */
+    #2a331f 20px
+  );
+  transition: width 0.3s ease-in-out;
+}
+
+#loading-percentage {
+  text-align: center;
+  font-size: 14px; /* Smaller text */
+  margin-bottom: 10px;
+  color: #74a835;
+  font-family: 'Courier New', monospace;
+}
+
+#loading-message {
+  font-style: italic;
+  color: #666; /* Very muted text */
+  animation: typewriter 2s steps(40, end) infinite;
+  font-size: 0.9em;
+}
+
+.loading-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #b35c5c; /* More muted red */
+  font-weight: bold;
+  font-size: 0.9em; /* Smaller text */
+}
+
+.dust-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/png;base64,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');
+  opacity: 0.4; /* Heavier dust */
+  mix-blend-mode: multiply; /* More visible dust */
+  pointer-events: none;
+  animation: dustMove 20s linear infinite; /* Add some slow movement */
+}
+
+/* Add a second dust layer with different properties for more dust effect */
+.loading-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/png;base64,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');
+  background-repeat: repeat;
+  opacity: 0.2;
+  mix-blend-mode: difference;
+  filter: contrast(1.5) invert(0.2);
+  animation: dustMove 15s linear infinite reverse;
+}
+
+.scan-line {
+  width: 100%;
+  height: 2px; /* Thinner scan line */
+  background-color: rgba(116, 168, 53, 0.15); /* More subtle scan line */
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: scanline 6s linear infinite;
+  box-shadow: 0 0 5px rgba(116, 168, 53, 0.2); /* Less glow */
+  pointer-events: none;
+}
+
+.flicker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  opacity: 0.1; /* Subtle flickering */
+  pointer-events: none;
+  animation: screenFlicker 0.3s infinite;
+}
+
+.blink {
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes scanline {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes slowFlicker {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes screenFlicker {
+  0% { background: transparent; }
+  50% { background: rgba(0, 0, 0, 0.4); } /* Darker flickering */
+  100% { background: transparent; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0; }
+}
+
+@keyframes typewriter {
+  from { opacity: 0.5; }
+  to { opacity: 0.7; }
+}
+
+@keyframes dustMove {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
+}
+
+/* Transition for main content */
+#main-content {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+#main-content.visible {
+  opacity: 1;
+}

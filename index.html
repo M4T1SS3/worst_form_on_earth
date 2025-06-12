@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Service Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading">
+  <!-- Loading overlay -->
+  <div id="loading-overlay">
+    <div class="loading-container">
+      <div class="loading-title">SYSTEM INITIALIZING</div>
+      <div class="loading-screen">
+        <div class="scan-line"></div>
+        <div class="loading-text">Loading public service module...</div>
+        <div class="loading-progress-container">
+          <div class="loading-progress-bar">
+            <div id="loading-progress"></div>
+          </div>
+        </div>
+        <div id="loading-percentage">0%</div>
+        <div id="loading-message">Checking system compatibility...</div>
+        <div class="dust-overlay"></div>
+        <div class="flicker"></div>
+      </div>
+      <div class="loading-footer blink">PLEASE WAIT... DO NOT REFRESH</div>
+    </div>
+  </div>
+
+  <!-- Main app container - hidden initially -->
+  <div id="main-content" style="display: none;">
+    <span id="status"></span>
+    <div id="app-container">
+      <div class="form-title">Apply for Public Service Document</div>
+      
+      <form id="frustrating-form">
+        <div class="form-group">
+          <label class="required">Full Name</label>
+          <input type="text" id="fullname" placeholder="As shown on official ID" autocomplete="off">
+        </div>
+        
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="For notification purposes" autocomplete="off">
+        </div>
+        
+        <div class="form-group">
+          <label class="required">Document Type</label>
+          <select id="doctype">
+            <option value="">Please select...</option>
+            <option value="type1">Birth Certificate</option>
+            <option value="type2">Marriage License</option>
+            <option value="type3">Property Deed</option>
+            <option value="type4">Other</option>
+          </select>
+        </div>
+        
+        <div class="captcha">
+          <label class="required">Please verify you are human</label>
+          <div class="captcha-text" id="captcha-text">R3aD Th1s</div>
+          <input type="text" id="captcha-input" placeholder="Enter the text above">
+        </div>
+        
+        <div class="form-group hidden-field">
+          <label class="required">Security Code</label>
+          <input type="text" id="security-code" placeholder="Required">
+        </div>
+      </form>
+    </div>
+    
+    <button id="box">SUBMIT</button>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
