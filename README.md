@@ -1,8 +1,8 @@
-# Launch Night - The Most Frustrating Form Ever
+#The Most Frustrating Form Ever
 
 A humorous web application that simulates the world's most frustrating public service portal. Built with vanilla JavaScript, HTML, and CSS, this project demonstrates creative ways to make user interactions deliberately challenging and entertaining.
 
-![App Screenshot](screenshot.png) <!-- You'll need to add a screenshot later -->
+![App Screenshot](image.png)
 
 https://github.com/yourusername/launch-night/raw/main/demo.mp4
 
@@ -25,7 +25,7 @@ https://github.com/yourusername/launch-night/raw/main/demo.mp4
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/launch-night.git
+git clone https://github.com/M4T1SS3/worst_form_on_earth
 ```
 
 2. Open `index.html` in your browser:
